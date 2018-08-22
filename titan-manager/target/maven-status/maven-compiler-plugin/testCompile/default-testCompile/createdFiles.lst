@@ -1,0 +1,8 @@
+com\yunji\titan\manager\EmailSenderTest.class
+com\yunji\titan\manager\test\BaseJunit4Test.class
+com\yunji\titan\manager\MonitorDaoTest.class
+com\yunji\titan\manager\SceneServiceTest.class
+com\yunji\titan\manager\LinkServiceTest.class
+com\yunji\titan\manager\BaseDaoTest.class
+com\yunji\titan\manager\MonitorServiceTest.class
+com\yunji\titan\manager\ReportServiceTest.class

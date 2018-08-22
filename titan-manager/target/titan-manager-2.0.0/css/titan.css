@@ -1,0 +1,90 @@
+@CHARSET "UTF-8";
+/* 内容块 */
+.titan-content-div{
+	margin-top: 30px;
+	margin-bottom: 24px
+}
+/* 搜索框  */
+.titan-search-input{
+	padding-left: 34px; 
+	width: 100%;
+}
+.titan-search-input-s{
+	text-indent: 10px;
+}
+/* 分页条 */
+.titan-pagebar{
+	float: right;
+}
+.titan-pagebar2{
+	float: right;
+}
+.titan-search-input-icon{
+	position: absolute; 
+	color: #cccccc; 
+	top: 10px; 
+	left: 10px;
+	cursor: pointer;
+}
+.titan-data-table{}
+.titan-data-table-s{}
+.titan-data-id{}
+.titan-data-name{
+	cursor: pointer;
+}
+.titan-btn{
+	/* background-color: #3da5e2; */
+	background-color: #0B6295;
+	padding: 0px 20px;
+}
+.titan-btn-del{
+}
+.titan-btn-cancel{}
+.titan-btn-topage{
+	color: #090;
+	margin-right: 20px;
+}
+.titan-btn-am{
+	color: #FFB800;
+}
+.titan-btn-am-edit{
+	color: #090;
+	margin-right: 20px;
+}
+.titan-btn-am-del{
+	color: #FF5722;
+}
+/* 保存 */
+.titan-btn-save{}
+/* 添加链路关系按钮 */
+.titan-btn-relation{
+	width:32%;
+	display:inline-block;
+	float:right;
+	margin-top: 4px;
+}
+/* 文件上传 */
+.titan-file-upload span{
+	margin-left: 30px;
+}
+.titan-file-upload span a{
+	color: #FF5722;
+}
+.titan-file-upload-desc{
+	font-size: 24px;
+	color: #ADADAD;
+	position:absolute;
+	top:6px;
+	cursor: pointer;
+}
+.titan-head-label{
+	color: #0B6295;
+}
+.titan-head-span{
+	font-size:14px;
+	color:#3879D9;
+	margin-left: 20px;
+}
+.titan-span-desc{
+	color: #3879D9;font-size: 16px;
+}

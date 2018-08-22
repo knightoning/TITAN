@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TITAN-首页</title>
+<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body class="titan-index-background">
+	<div class="layui-fluid" >
+	  <div class="layui-row titan-index-header">
+	 		<div class="layui-col-md2">
+	  			<span class="titan-index-header-logo"><img src="images/logo2.png" style="height: 40px;padding-left: 16px;"></span>
+	  		</div>
+	  		<div class="layui-col-md10" style="text-align: right;padding-right: 16px;">
+	  			<a href="login.html" style="color: #fff;font-size: 14px;">登录</a>
+	  		</div>
+	  </div>
+	  
+	  <div class="layui-row titan-index-body1">
+			<div class="layui-col-md5 layui-col-md-offset2">
+				<h1 class="titan-index-body1-title">TITAN</h1>
+				<div class="titan-index-body1-desc">
+					云集全链路压测军演系统具备强大的分布式压测能力，能够在短时间内发起超大规模的压测流量，使用TITAN能够快速挖掘出业务系统的性能瓶颈，探测出业务系统的真实容量水位，有指导的在大促前进行容量规划和性能优化，让系统坚如磐石。
+				</div>
+				<div class="titan-index-body1-help"><a href="https://github.com/yunjiweidian/TITAN/wiki" target="_black">帮助文档</a></div>
+			 </div>
+	   </div>
+	   
+	  <div class="layui-row titan-index-body2">
+	  		<div class="layui-col-md3 layui-col-md-offset2">
+	  			<div class="rotator">
+					<div class="surface">
+						<div class="out-front">超高的并发能力</div>
+						<div class="out-back">操作简单</div>
+						<div class="out-left">能够适配复杂业务场景</div>
+						<div class="out-right">完善监控</div> 
+						<div class="out-top">分布式架构</div>
+						<div class="out-bottom">自动化压测</div>
+						<span class="in-front"></span>
+						<span class="in-back"></span>
+						<span class="in-left"></span>
+						<span class="in-right"></span>
+						<span class="in-top"></span>
+						<span class="in-bottom"></span> 
+					</div>
+				</div>
+	  		</div>
+	  		<div class="layui-col-md5 titan-index-module">
+				<div class="layui-col-md4 titan-index-module-divodd">
+					<h2 class="titan-index-module-title"><i class="layui-icon">&#xe641;</i>超高的并发能力</h2>
+					<div class="titan-index-module-desc">
+						可随意扩容Agent(压测引擎)节点，能够在短时间内发起超大规模的压测流量
+					</div>
+				</div> 	
+				<div class="layui-col-md4 titan-index-module-diveven">
+					<h2 class="titan-index-module-title"><i class="layui-icon">&#xe631;</i>操作简单</h2>
+					<div class="titan-index-module-desc">
+						上手简单，友好的交互体验
+					</div>
+				</div> 		
+				<div class="layui-col-md4 titan-index-module-divodd">
+					<h2 class="titan-index-module-title"><i class="layui-icon">&#xe64c;</i>能够适配复杂业务场景</h2>
+					<div class="titan-index-module-desc">
+						支持多链路组装压测，无惧任何业务场景挑战
+					</div>
+				</div> 		
+				<div class="layui-col-md4 titan-index-module-diveven">
+					<h2 class="titan-index-module-title"><i class="layui-icon">&#xe62c;</i>完善监控</h2>
+					<div class="titan-index-module-desc">
+						支持对压测引擎、目标机器的可视化CPU、内存、网卡、磁盘IOPS等监控
+					</div>
+				</div> 	
+				<div class="layui-col-md4 titan-index-module-divodd">
+					<h2 class="titan-index-module-title"><i class="layui-icon">&#xe857;</i>分布式架构</h2>
+					<div class="titan-index-module-desc">
+						基于分布式架构设计，任何一个子系统都不会成为瓶颈
+					</div>
+				</div> 		
+				<div class="layui-col-md4 titan-index-module-diveven">
+					<h2 class="titan-index-module-title"><i class="layui-icon">&#xe628;</i>自动化压测</h2>
+					<div class="titan-index-module-desc">
+						支持定时自动化压测任务，更好的实现线上压测常态化
+					</div>
+				</div> 		
+	  		</div>
+	  </div>
+	  
+	  <div class="layui-row titan-index-footer">
+  		 <div class="layui-col-md8 layui-col-md-offset2">
+			<ul>
+		  		<li><span>Power by云集研发中心基础架构组 Copyright &copy; 2017~2018</span><span><a href="https://github.com/yunjiweidian/TITAN" target="_black"><img alt="github" src="images/github.png" style="height: 32px;"></a></span></li>
+		  	</ul>
+		 </div>
+	  </div>
+	  
+	</div>  
+	<div id="forbiddenDiv" style="width: 100%;height: 100%;background-color: #A9BEC3;position: absolute;left: 0px;top: 0px;text-align:center;display: none;" >
+		<div style="background-color: #FFB800;width: 100%;height: 32px;line-height: 32px;">仅限较新版本的Chrome内核浏览器</div>
+	</div>
+	<script type="text/javascript">
+		window.onload=function(){
+		 	if (-1 == navigator.userAgent.indexOf("Chrome")){
+		 		document.getElementById("forbiddenDiv").style.display="";
+		 	}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>TITAN-登录</title>
+<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<style type="text/css">
+.beg-login-bg{
+ 	background-image:radial-gradient(circle,#FFFFFF,#86a2a9);
+}
+.beg-login-box{
+	border: 1px solid #A9BEC3;
+	background-color: #fff;
+	box-shadow: 10px 10px 5px #a2a2a2;
+}
+.beg-login-box header{
+	color: #ffffff;
+	background-color: #A9BEC3;
+}
+</style>
+</head>
+
+<body class="beg-login-bg">
+	  <div class="layui-row titan-index-header">
+	 		<div class="layui-col-md2">
+	  			<span class="titan-index-header-logo"><img src="images/logo2.png" style="height: 40px;padding-left: 16px;"></span>
+	  		</div>
+	  		<div class="layui-col-md10" style="text-align: right;padding-right: 16px;">
+	  			<a href="index.html" style="color: #fff;font-size: 14px;">首页</a>
+	  		</div>
+	  </div>
+	  <div class="beg-login-box" >
+			 <header>
+				<h1 style="text-align: left;padding-left: 50px;"><i class="layui-icon" style="font-size: 28px;">&#xe612;</i>&nbsp;&nbsp;登&nbsp;录</h1>
+			</header> 
+			<div class="beg-login-main">
+				<form action="user/login" class="layui-form" method="post"><input name="__RequestVerificationToken" type="hidden" value="fkfh8D89BFqTdrE2iiSdG_L781RSRtdWOH411poVUWhxzA5MzI8es07g6KPYQh9Log-xf84pIR2RIAEkOokZL3Ee3UKmX0Jc8bW8jOdhqo81" />
+					<div class="layui-form-item">
+						<label class="beg-login-icon">
+                        <i class="layui-icon">&#xe612;</i>
+                    </label>
+					 	<input type="text" id="username" name="username" required lay-verify="required" autocomplete="off" placeholder="请输入账号" class="layui-input">
+					</div>
+					<div class="layui-form-item">
+						<label class="beg-login-icon">
+                        <i class="layui-icon">&#xe642;</i>
+                    </label>
+						<input type="password" id="password" name="password" required lay-verify="required" autocomplete="off" placeholder="请输入密码" class="layui-input">
+					</div>
+					<div class="layui-form-item">
+						<div class="beg-pull-left beg-login-remember">
+							<label>记住账号？</label>
+							<input type="checkbox" id="rememberMe" name="rememberMe" checked="" lay-filter="rememberSwitch" lay-skin="switch" lay-text="是|否" checked title="记住密码" >
+						</div>
+						<div class="beg-pull-right">
+							<button class="layui-btn layui-btn-primary" lay-submit lay-filter="login" id="loginBtn" style="width: 140px;font-weight: bolder;">登&nbsp;&nbsp;录</button>
+						</div>
+						<div class="beg-clear"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="layui-row titan-index-footer">
+	  		 <div class="layui-col-md8 layui-col-md-offset2">
+				<ul>
+			  		<li><span>Power by云集研发中心基础架构组 Copyright &copy; 2017~2018</span><span><a href="https://github.com/yunjiweidian/TITAN" target="_black"><img alt="github" src="images/github.png" style="height: 32px;"></a></span></li>
+			  	</ul>
+			 </div>
+		</div>
+		<div style="position: absolute;right: 16px;bottom: 50px;">
+			<img src="images/qq.png" style="width:160px;">
+		</div>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+		<script type="text/javascript" src="js/cookie.js"></script>
+		<script>
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,
+					$ = layui.jquery,
+					form = layui.form;
+				
+				var markPasswordFlag = true;
+				//点击登录
+				form.on('submit(login)',function(data){
+					var username = $("#username").val();
+					var password = $("#password").val();
+					 $.ajax({
+						    url:'user/login',
+						    type:'POST', //GET
+						    async:true,    //或false,是否异步
+						    data:{
+						        username:username,
+						        password:password
+						    },
+						    timeout:5000,    //超时时间
+						    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+						    success:function(result,textStatus,jqXHR){
+						    	if(result.success){
+						    		var ticket = result.data.ticket;
+						    		setoneCookie("ticket_",ticket);
+						    		setoneCookie("username",username);
+						    		if(markPasswordFlag){
+						    			window.localStorage.setItem("usermsg",username);
+						    		}else{
+						    			window.localStorage.removeItem("usermsg");
+						    		}
+						    		window.location.href="pages/main";
+						    	}else{
+						    		layer.tips(result.errorMsg, '#loginBtn',{
+						    			  tips: [2, '#3da5e2'],
+						    			  time: 4000
+						    			}); 
+						    	}
+						    },
+						    error:function(xhr,textStatus){
+						        console.log('错误:' + xhr);
+						    }
+						})
+					return false;
+				});
+			   form.on('switch(rememberSwitch)', function(data){
+			        if(this.checked){
+			        	markPasswordFlag = true;
+			        }else{
+			        	markPasswordFlag = false;
+			        }
+			  });
+			});
+		</script>
+		<script type="text/javascript">
+		function fillUsermsg(){
+			var username = window.localStorage.getItem("usermsg");
+			if (username != null) {
+				document.getElementById("username").value=username;
+			}
+		}
+		window.onload=fillUsermsg;
+		</script>
+	</body>
+</html>

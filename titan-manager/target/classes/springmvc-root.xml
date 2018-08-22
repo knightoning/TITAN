@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:task="http://www.springframework.org/schema/task" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+            http://www.springframework.org/schema/mvc  
+            http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd  
+            http://www.springframework.org/schema/context  
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd
+            http://www.springframework.org/schema/task  
+			http://www.springframework.org/schema/task/spring-task-3.2.xsd 
+            ">  
+            
+     <!-- 加载所有properties配置文件 -->       
+	<bean id="configProperties"  class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+	       	 <list>
+				<value>classpath:properties/config.properties</value>
+				<value>classpath:properties/dubbo.properties</value>
+				<value>classpath:properties/redis.properties</value>
+			</list>
+        </property>
+    </bean>
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="properties" ref="configProperties" />
+    </bean>
+            
+    <!-- 默认扫描的包路径(扫描整个根目录) -->  
+    <context:component-scan base-package="com.yunji" /> 
+    
+    <!-- 支持文件上传(限制100M) -->
+	<bean  id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="104857600"/>
+        <property name="resolveLazily" value="true"/> 
+    </bean>
+    
+    <!-- 添加注解驱动 -->  
+   <mvc:annotation-driven>    
+       <mvc:message-converters>    
+           <bean class="org.springframework.http.converter.StringHttpMessageConverter" >    
+            <property name = "supportedMediaTypes">  
+                <list>  
+                     <value>text/plain;charset=UTF-8</value>  
+                </list>  
+            </property>  
+           </bean>    
+           <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">    
+            <property name="supportedMediaTypes">    
+                <list>    
+                    <value>applicaton/json;charset=UTF-8</value>    
+                </list>    
+            </property>   
+        </bean> 
+       </mvc:message-converters>   
+   </mvc:annotation-driven>
+   
+	<!-- 登录拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.yunji.titan.manager.interceptor.LoginInterceptor">
+				<property name="uncheckUrls">
+					<list> 
+						<value>/user/login</value>
+					</list>
+				</property>
+			</bean>
+			</mvc:interceptor>
+	</mvc:interceptors>	
+	
+	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"	p:prefix="/WEB-INF/pages/" p:suffix=".jsp"/>
+	
+	<!-- 配置定时清除monitor数据job-->
+	<task:annotation-driven />
+</beans>  

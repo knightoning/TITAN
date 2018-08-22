@@ -1,0 +1,3 @@
+com\yunji\titan\test\agent\interpreter\ExpressionTest.class
+com\yunji\titan\test\agent\utils\PropertyResolverTest.class
+com\yunji\titan\test\agent\GetRequestPerformanceTestTest.class
